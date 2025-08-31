@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--  -->
+  <title>Niyantri Beans & Brew - Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body style="font-family: 'Poppins', sans-serif;" class="min-h-screen w-full bg-gradient-to-br from-amber-900 via-rose-800 to-amber-900 text-white">
+  <header class="w-full fixed top-0 left-0 bg-black/40 backdrop-blur-md z-50">
+    <nav class="max-w-full w-full px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-bold">Niyantri Beans & Brew</a>
+      <ul class="flex items-center gap-6">
+        <li><a href="index.html" class="hover:underline">Home</a></li>
+        <li><a href="menu.html" class="hover:underline">Menu</a></li>
+        <li><a href="cart.html" class="relative hover:underline">Cart<span id="cart-count" class="ml-1 inline-block bg-yellow-500 text-black rounded-full text-xs px-2"></span></a></li>
+        <li><a href="about.html" class="hover:underline">About</a></li>
+        <li><a href="contact.html" class="hover:underline">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="pt-28 w-full">
+    <section class="px-6 py-8 max-w-full">
+      <h2 class="text-3xl font-bold mb-6">Our Menu</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Espresso -->
+        <div class="bg-white/10 rounded-xl p-4">
+          <img src="https://pixabay.com/get/ged28701eef7f6374a3147bd7e501c2a0ad84280547334d4faaf59f88e071f20cbaeb2b0702230256133063957bbb2f5014109641f361a30f11727b7e35ed61de_640.jpg" alt="Espresso" class="w-full h-40 object-cover rounded mb-3" />
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold">Espresso</h3>
+              <p class="text-sm">Rich and bold</p>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">$3.00</p>
+              <button onclick="addToCart('Espresso',3)" class="mt-2 bg-yellow-500 text-black px-3 py-2 rounded">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <!-- Americano -->
+        <div class="bg-white/10 rounded-xl p-4">
+          <img src="https://pixabay.com/get/g297f5718af97e3773ff5351163f156854f66100cd55d5fc201c5f4ae446acb40524be18334cd5bbf20c650c7d31a5d62ab7ee63618815db43be10f2b617dc7d4_640.jpg" alt="Americano" class="w-full h-40 object-cover rounded mb-3" />
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold">Americano</h3>
+              <p class="text-sm">Smooth and balanced</p>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">$3.50</p>
+              <button onclick="addToCart('Americano',3.5)" class="mt-2 bg-yellow-500 text-black px-3 py-2 rounded">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <!-- Latte -->
+        <div class="bg-white/10 rounded-xl p-4">
+          <img src="https://images.unsplash.com/photo-1503240778100-fd245e17a273?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHwzfHxsYXR0ZSUyMHdpdGglMjBsYXR0ZSUyMGFydHxlbnwwfDB8fHwxNzU2NjM2MjUxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Latte" class="w-full h-40 object-cover rounded mb-3" />
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold">Latte</h3>
+              <p class="text-sm">Creamy and smooth</p>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">$4.50</p>
+              <button onclick="addToCart('Latte',4.5)" class="mt-2 bg-yellow-500 text-black px-3 py-2 rounded">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <!-- Cappuccino -->
+        <div class="bg-white/10 rounded-xl p-4">
+          <img src="https://images.unsplash.com/photo-1544281474-bdf3e12f871f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHw0fHxjYXBwdWNjaW5vJTIwd2l0aCUyMGZvYW0lMjBhcnR8ZW58MHwwfHx8MTc1NjYzNjI1Mnww&ixlib=rb-4.1.0&q=80&w=1080" alt="Cappuccino" class="w-full h-40 object-cover rounded mb-3" />
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold">Cappuccino</h3>
+              <p class="text-sm">Foamy perfection</p>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">$4.50</p>
+              <button onclick="addToCart('Cappuccino',4.5)" class="mt-2 bg-yellow-500 text-black px-3 py-2 rounded">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <!-- Mocha -->
+        <div class="bg-white/10 rounded-xl p-4">
+          <img src="https://images.unsplash.com/photo-1671059954529-3c90fb11e19d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHw5fHxtb2NoYSUyMHdpdGglMjBjaG9jb2xhdGUlMjBkcml6emxlfGVufDB8MHx8fDE3NTY2MzYyNTN8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Mocha" class="w-full h-40 object-cover rounded mb-3" />
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold">Mocha</h3>
+              <p class="text-sm">Chocolatey delight</p>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">$5.00</p>
+              <button onclick="addToCart('Mocha',5)" class="mt-2 bg-yellow-500 text-black px-3 py-2 rounded">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <!-- Flat White -->
+        <div class="bg-white/10 rounded-xl p-4">
+          <img src="https://images.pexels.com/photos/24613535/pexels-photo-24613535.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Flat White" class="w-full h-40 object-cover rounded mb-3" />
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold">Flat White</h3>
+              <p class="text-sm">Balanced and velvety</p>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">$4.00</p>
+              <button onclick="addToCart('Flat White',4)" class="mt-2 bg-yellow-500 text-black px-3 py-2 rounded">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="w-full text-center py-6 bg-black/30 mt-8">
+    <p class="text-sm">&copy; 2025 Niyantri Beans & Brew. All rights reserved.</p>
+  </footer>
+
+  <script src="./js/cart.js"></script>
+  <script>
+    // Initialize cart count if available
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof renderCartCount === 'function') renderCartCount();
+    });
+  </script>
+</body>
+</html>
