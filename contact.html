@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--  -->
+  <title>Contact - Niyantri Beans & Brew</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body style="font-family: 'Poppins', sans-serif;" class="min-h-screen w-full bg-gradient-to-br from-amber-900 via-rose-800 to-amber-900 text-white">
+  <header class="w-full fixed top-0 left-0 bg-black/40 backdrop-blur-md z-50">
+    <nav class="max-w-full w-full px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-bold">Niyantri Beans & Brew</a>
+      <ul class="flex items-center gap-6">
+        <li><a href="index.html" class="hover:underline">Home</a></li>
+        <li><a href="menu.html" class="hover:underline">Menu</a></li>
+        <li><a href="cart.html" class="relative hover:underline">Cart<span id="cart-count" class="ml-1 inline-block bg-yellow-500 text-black rounded-full text-xs px-2"></span></a></li>
+        <li><a href="about.html" class="hover:underline">About</a></li>
+        <li><a href="contact.html" class="hover:underline">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="pt-28 w-full">
+    <section class="px-6 py-8 max-w-full">
+      <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+      <form class="bg-white/10 rounded-lg p-4 space-y-4 w-full md:w-1/2">
+        <div>
+          <label class="block mb-1">Name</label>
+          <input type="text" class="w-full px-3 py-2 rounded" placeholder="Your name" />
+        </div>
+        <div>
+          <label class="block mb-1">Email</label>
+          <input type="email" class="w-full px-3 py-2 rounded" placeholder="you@example.com" />
+        </div>
+        <div>
+          <label class="block mb-1">Message</label>
+          <textarea class="w-full px-3 py-2 rounded" rows="4" placeholder="Your message"></textarea>
+        </div>
+        <button type="submit" class="bg-yellow-500 text-black px-4 py-2 rounded">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="w-full text-center py-6 bg-black/30 mt-8">
+    <p class="text-sm">&copy; 2025 Niyantri Beans & Brew. All rights reserved.</p>
+  </footer>
+
+  <script src="./js/cart.js"></script>
+</body>
+</html>
