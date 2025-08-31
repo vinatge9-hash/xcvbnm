@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--  -->
+  <title>Niyantri Beans & Brew - Cart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body style="font-family: 'Poppins', sans-serif;" class="min-h-screen w-full bg-gradient-to-br from-amber-900 via-rose-800 to-amber-900 text-white">
+  <header class="w-full fixed top-0 left-0 bg-black/40 backdrop-blur-md z-50">
+    <nav class="max-w-full w-full px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-bold">Niyantri Beans & Brew</a>
+      <ul class="flex items-center gap-6">
+        <li><a href="index.html" class="hover:underline">Home</a></li>
+        <li><a href="menu.html" class="hover:underline">Menu</a></li>
+        <li><a href="cart.html" class="relative hover:underline">Cart<span id="cart-count" class="ml-1 inline-block bg-yellow-500 text-black rounded-full text-xs px-2"></span></a></li>
+        <li><a href="about.html" class="hover:underline">About</a></li>
+        <li><a href="contact.html" class="hover:underline">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="pt-28 w-full">
+    <section class="px-6 py-6 max-w-full">
+      <h2 class="text-3xl font-bold mb-4">Your Cart</h2>
+      <div id="cart-items" class="space-y-2"></div>
+      <div class="flex justify-between items-center p-3 border-t mt-2">
+        <span class="font-semibold">Total</span>
+        <span id="cart-total" class="font-semibold">$0.00</span>
+      </div>
+      <div id="paypal-button-container" class="mt-4"></div>
+    </section>
+  </main>
+
+  <footer class="w-full text-center py-6 bg-black/30 mt-8">
+    <p class="text-sm">&copy; 2025 Niyantri Beans & Brew. All rights reserved.</p>
+  </footer>
+
+  <script src="./js/cart.js"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+  <script>
+    function renderCartItems(){
+      const items = getCart();
+      const container = document.getElementById('cart-items');
+      if(!container) return;
+      if(items.length === 0){ container.innerHTML = '<p>Your cart is empty.</p>'; updateTotalDisplay(0); renderPayPal(0); return; }
+      let html = '';
+      items.forEach((it, idx) => {
+        html += `<div class="flex justify-between items-center border-b py-2">
+                    <span>${it.name}</span>
+                    <span>$${Number(it.price).toFixed(2)}</span>
+                    <button class="text-red-500" onclick="removeFromCart(${idx})">Remove</button>
+                 </div>`;
+      });
+      container.innerHTML = html;
+      updateTotal();
+      renderPayPal(getTotal());
+    }
+
+    function getTotal(){
+      const items = getCart();
+      return items.reduce((sum, i) => sum + Number(i.price || 0), 0);
+    }
+
+    function updateTotal(){
+      const total = getTotal();
+      updateTotalDisplay(total);
+    }
+
+    function updateTotalDisplay(total){
+      const totalEl = document.getElementById('cart-total');
+      if(totalEl) totalEl.textContent = '$' + Number(total || 0).toFixed(2);
+    }
+
+    function removeFromCart(index){
+      const cart = getCart();
+      cart.splice(index, 1);
+      localStorage.setItem('nyb_cart', JSON.stringify(cart));
+      renderCartItems();
+      renderCartCount();
+    }
+
+    // PayPal integration
+    function renderPayPal(total){
+      if(typeof paypal === 'undefined') return;
+      const container = document.getElementById('paypal-button-container');
+      if(!container) return;
+      // Clear previous buttons if re-rendering
+      container.innerHTML = '';
+      paypal.Buttons({
+        createOrder: function(data, actions){
+          const amount = Number(total || 0).toFixed(2);
+          return actions.order.create({
+            purchase_units: [{ amount: { currency_code: 'USD', value: amount } }]
+          });
+        },
+        onApprove: function(data, actions){
+          return actions.order.capture().then(function(details){
+            alert('Payment completed. Thank you, ' + details.payer.name.given_name + '!');
+            localStorage.removeItem('nyb_cart');
+            renderCartItems();
+          });
+        }
+      }).render('#paypal-button-container');
+    }
+
+    function getCart(){
+      try { return JSON.parse(localStorage.getItem('nyb_cart') || '[]'); } catch { return []; }
+    }
+
+    function renderCartCount(){
+      const countEl = document.getElementById('cart-count');
+      if(countEl){ countEl.textContent = getCart().length; }
+    }
+
+    // Expose to global for inline onclick in Menu page
+    window.addToCart = function(name, price){
+      const cart = getCart();
+      cart.push({ name: name, price: Number(price) });
+      localStorage.setItem('nyb_cart', JSON.stringify(cart));
+      renderCartItems();
+      renderCartCount();
+    };
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', function(){
+      renderCartItems();
+      renderCartCount();
+    });
+  </script>
+</body>
+</html>
